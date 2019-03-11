@@ -26,18 +26,10 @@
                 android:textSize="16sp"
                 app:onClick="@{v -> viewModel.onRefresh()}"
                 android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:layout_marginStart="16dp" app:layout_constraintEnd_toStartOf="@+id/btnLoadMore"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginStart="16dp"
                 android:layout_marginEnd="8dp"/>
 
-        <Button style="@style/Widget.MaterialComponents.Button"
-                app:layout_constraintTop_toBottomOf="@id/title"
-                app:onClick="@{v -> viewModel.doLoadMore()}"
-                app:layout_constraintStart_toEndOf="@id/btnRefresh"
-                android:textSize="16sp"
-                android:id="@+id/btnLoadMore"
-                android:text="Load More"
-                android:layout_width="wrap_content" android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"/>
 
         <androidx.recyclerview.widget.RecyclerView
                 app:layout_constraintTop_toBottomOf="@id/btnRefresh"

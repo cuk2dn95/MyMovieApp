@@ -25,7 +25,7 @@ class ListPopularViewAdapter : PagedListAdapter<Movie, ListPopularViewAdapter.Vi
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val movie = currentList?.getOrNull(position) ?: return
+        val movie = getItem(position) ?: return
         holder.bind(movie)
     }
 

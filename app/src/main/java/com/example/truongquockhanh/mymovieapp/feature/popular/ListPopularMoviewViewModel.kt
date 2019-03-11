@@ -5,7 +5,6 @@ import androidx.lifecycle.Transformations
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.example.truongquockhanh.mymovieapp.base.BaseViewModel
-import com.example.truongquockhanh.mymovieapp.common.createMergeLiveData
 import com.example.truongquockhanh.mymovieapp.constant.NetworkState
 import com.example.truongquockhanh.mymovieapp.data.MovieRepository
 import com.example.truongquockhanh.mymovieapp.data.paging.PagePopularMovieFactory
@@ -48,11 +47,6 @@ class ListPopularMovieViewModel @Inject constructor(@Named("remote") remoteRepo:
         dataSource.pageMovieSource.value?.invalidate()
     }
 
-    fun doLoadMore() {
-        listMovie.value?.let {
-            it.loadAround(it.loadedCount - 1)
-        }
-    }
 
     companion object {
         const val PAGE_SIZE = 20
