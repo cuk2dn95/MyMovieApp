@@ -1,7 +1,8 @@
-package com.example.truongquockhanh.mymovieapp
+package com.example.truongquockhanh.mymovieapp.feature
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.truongquockhanh.mymovieapp.R
 
 class MainActivity : AppCompatActivity() {
 
