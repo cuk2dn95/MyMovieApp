@@ -10,7 +10,6 @@ import io.reactivex.disposables.CompositeDisposable
 
 class PagePopularMovieSource(
     private val remoteRepository: MovieRepository,
-    private val localRepository: MovieRepository,
     private val compositeDisposable: CompositeDisposable
 ) :
     PageKeyedDataSource<Long, Movie>() {

@@ -8,7 +8,6 @@ import io.reactivex.disposables.CompositeDisposable
 
 class PagePopularMovieFactory(
     private val movieRepository: MovieRepository,
-    private val localRepository: MovieRepository,
     private val compositeDisposable: CompositeDisposable
 ) :
     DataSource.Factory<Long, Movie>() {
@@ -18,7 +17,6 @@ class PagePopularMovieFactory(
     override fun create(): DataSource<Long, Movie> {
         val dataSource = PagePopularMovieSource(
             movieRepository,
-            localRepository,
             compositeDisposable
         )
         pageMovieSource.postValue(dataSource)

@@ -2,7 +2,6 @@ package com.example.truongquockhanh.mymovieapp.module
 
 import android.content.Context
 import com.example.truongquockhanh.mymovieapp.MainApplication
-import com.example.truongquockhanh.mymovieapp.data.local.MovieDatabase
 import com.example.truongquockhanh.mymovieapp.data.remote.MovieService
 import com.example.truongquockhanh.mymovieapp.data.remote.RetrofitClient
 import dagger.Module
@@ -29,11 +28,5 @@ class AppModule {
     @Singleton
     fun provideAppContext(application: MainApplication): Context {
         return application
-    }
-
-    @Provides
-    @Singleton
-    fun providePopularMoviesDb(context: Context): MovieDatabase {
-        return MovieDatabase.getInstance(context)
     }
 }

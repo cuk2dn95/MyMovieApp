@@ -14,12 +14,12 @@ import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 import javax.inject.Named
 
-class ListPopularMovieViewModel @Inject constructor(@Named("remote") remoteRepo: MovieRepository, @Named("local") localRepo: MovieRepository) :
+class ListPopularMovieViewModel @Inject constructor(@Named("remote") remoteRepo: MovieRepository) :
     BaseViewModel() {
 
     private val compositeDisposable = CompositeDisposable()
     private val dataSource: PagePopularMovieFactory =
-        PagePopularMovieFactory(remoteRepo, localRepo, compositeDisposable)
+        PagePopularMovieFactory(remoteRepo, compositeDisposable)
     var listMovie: LiveData<PagedList<Movie>>
 
     private val netWorkStateInSource =
