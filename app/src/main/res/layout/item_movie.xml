@@ -23,7 +23,7 @@
 
             <ImageView android:id="@+id/img_poster" android:layout_width="match_parent"
                        android:layout_height="match_parent"
-                       app:imagePath="@{movie.posterPath}"
+                       app:posterImagePath="@{movie.posterPath}"
                        tools:src="@android:drawable/ic_menu_call"/>
 
         </androidx.cardview.widget.CardView>

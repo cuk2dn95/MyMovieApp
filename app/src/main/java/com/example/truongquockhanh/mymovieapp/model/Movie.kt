@@ -1,32 +1,40 @@
 package com.example.truongquockhanh.mymovieapp.model
 
 import androidx.room.Entity
+import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
 
 @Entity(tableName = "Movie")
-class Movie {
+class Movie(
     @field:SerializedName("vote_count")
-    var voteCount: Int = 0
+    var voteCount: Int = 0,
     @PrimaryKey
-    var id: Int = 0
-    var video: Boolean = false
+    var id: Int = 0,
+    var video: Boolean = false,
     @field:SerializedName("vote_average")
-    var voteAverage: Float = 0f
-    var title: String = ""
-    var popularity: Float = 0f
+    var voteAverage: Float = 0f,
+    var title: String = "",
+    var popularity: Float = 0f,
     @field:SerializedName("original_language")
-    var originalLanguage: String = "en"
+    var originalLanguage: String = "en",
     @field:SerializedName("original_title")
-    var originalTitle: String = ""
+    var originalTitle: String = "",
     @field:SerializedName("backdrop_path")
-    var backdropPath: String = ""
+    var backdropPath: String? = "",
     @field:SerializedName("poster_path")
-    var posterPath: String = ""
-    var adult: Boolean = false
-    var overview: String = ""
+    var posterPath: String? = "",
+    var adult: Boolean = false,
+    var overview: String = "",
     @field:SerializedName("release_date")
-    var releaseDate: String = ""
-    var page: Int = 0
-}
+    var releaseDate: String = "",
+    var page: Int = 0,
+    @field:SerializedName("spoken_languages")
+    @Ignore
+    var language: List<Language> = emptyList(),
+    @field:SerializedName("genres")
+    @Ignore
+    var genres: List<Genres> = emptyList(),
+    var runtime : Int = 0
+)

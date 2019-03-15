@@ -33,12 +33,12 @@ android {
         debug {
             buildConfigField 'String', API_KEY, '"2d61ba4c1c9ba65a8810ee8b292d1f2f"'
             buildConfigField 'String', BASE_URL, '"https://api.themoviedb.org/3/"'
-            buildConfigField 'String', IMG_URL, '"https://image.tmdb.org/t/p/w200"'
+            buildConfigField 'String', IMG_URL, '"https://image.tmdb.org/t/p/original"'
         }
         release {
             buildConfigField 'String', API_KEY, '"2d61ba4c1c9ba65a8810ee8b292d1f2f"'
             buildConfigField 'String', BASE_URL, '"https://api.themoviedb.org/3/"'
-            buildConfigField 'String', IMG_URL, '"https://image.tmdb.org/t/p/w200"'
+            buildConfigField 'String', IMG_URL, '"https://image.tmdb.org/t/p/original"'
         }
     }
     dataBinding { enabled = true }
@@ -84,6 +84,7 @@ dependencies {
     implementation "android.arch.navigation:navigation-ui-ktx:$nav_version" // For Kotlin use navigation-ui-ktx
 
     implementation "androidx.paging:paging-runtime-ktx:$paging_version" // For Kotlin use paging-runtime-ktx
+    implementation "androidx.paging:paging-rxjava2-ktx:$paging_version"
 
     // alternatively - without Android dependencies for testing
     testImplementation "androidx.paging:paging-common-ktx:$paging_version" // For Kotlin use paging-common-ktx
@@ -101,6 +102,7 @@ dependencies {
     kapt "androidx.room:room-compiler:$room_version"
     implementation "androidx.room:room-rxjava2:$room_version"
     testImplementation "androidx.room:room-testing:$room_version"
+
 
     testImplementation "org.powermock:powermock-core:${powermockVersion}"
     testImplementation "org.powermock:powermock-module-junit4:${powermockVersion}"

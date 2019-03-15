@@ -10,9 +10,10 @@ import com.example.truongquockhanh.mymovieapp.R
 import com.example.truongquockhanh.mymovieapp.databinding.ItemMovieBinding
 import com.example.truongquockhanh.mymovieapp.model.Movie
 
-class ListPopularViewAdapter : PagedListAdapter<Movie, ListPopularViewAdapter.ViewHolder>(
-    DIFF_CALL_BACK
-) {
+class ListPopularViewAdapter(private val onMovieClick: (Int) -> Unit) :
+    PagedListAdapter<Movie, ListPopularViewAdapter.ViewHolder>(
+        DIFF_CALL_BACK
+    ) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = DataBindingUtil.inflate<ItemMovieBinding>(
@@ -31,6 +32,7 @@ class ListPopularViewAdapter : PagedListAdapter<Movie, ListPopularViewAdapter.Vi
 
     inner class ViewHolder(private val binding: ItemMovieBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(movie: Movie) {
+            binding.root.setOnClickListener { onMovieClick(movie.id) }
             binding.movie = movie
             binding.executePendingBindings()
         }

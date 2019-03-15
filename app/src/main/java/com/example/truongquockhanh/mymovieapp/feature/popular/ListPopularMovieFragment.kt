@@ -11,11 +11,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.truongquockhanh.mymovieapp.R
 import com.example.truongquockhanh.mymovieapp.base.BaseFragment
 import com.example.truongquockhanh.mymovieapp.constant.NetworkState
 import com.example.truongquockhanh.mymovieapp.databinding.FragmentListPopularMovieBinding
+import com.google.android.material.snackbar.Snackbar
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_list_popular_movie.*
 import javax.inject.Inject
@@ -62,13 +65,37 @@ class ListPopularMovieFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        movieAdapter = ListPopularViewAdapter()
+        movieAdapter = ListPopularViewAdapter { id -> onMovieClick(id) }
         recycler_view.layoutManager = LinearLayoutManager(context)
         recycler_view.adapter = movieAdapter
+        refreshLayout.isEnabled = false
         binding.viewModel = viewModel
         viewModel.listMovie.observe(this, Observer {
             movieAdapter.submitList(it)
         })
 
+        viewModel.refreshState.observe(this, Observer {
+            when (it) {
+                NetworkState.LOADING -> {
+                    refreshLayout.isEnabled = true
+                    refreshLayout.isRefreshing = true
+                }
+                NetworkState.SUCCESS -> {
+                    refreshLayout.isRefreshing = false
+                    refreshLayout.isEnabled = false
+                }
+                NetworkState.ERROR -> {
+                    refreshLayout.isRefreshing = false
+                    refreshLayout.isEnabled = false
+                    Snackbar.make(view, "Error refresh data", Snackbar.LENGTH_SHORT)
+                }
+            }
+        })
+    }
+
+    private fun onMovieClick(idMovie: Int) {
+        val detailMovieDirection =
+            ListPopularMovieFragmentDirections.actionListPopularMovieFragmentToDetailMovieFragment(idMovie = idMovie)
+        findNavController().navigate(detailMovieDirection)
     }
 }
